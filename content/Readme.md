@@ -1,4 +1,4 @@
-# .NET 7 Website for ${{ values.name (${{ values.component_id }})}}
+# .NET 7 Website for ${{ values.name }}
 
 This is the template for ${{ values.description }}
 
@@ -35,3 +35,6 @@ The project structure of this website is as follows:
 ## License
 
 This project is licensed under the MIT License. See the LICENSE file for more information.
+
+## Component 
+${{ values.component_id }}
