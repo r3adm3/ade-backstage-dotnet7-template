@@ -1,10 +1,10 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: simple-dotnet7-mvc-template
+  name: ${{values.name}}
   annotations:
     backstage.io/managed-by-location: url:https://github.com/r3adm3/ade-backstage-dotnet7-template/edit/main/content/catalog-info.yaml
-    github.com/project-slug: r3adm3/ade-backstage-dotnet7-template
+    github.com/project-slug: r3adm3/${{values.name}}
 spec:
   type: service
   owner: user:guest
