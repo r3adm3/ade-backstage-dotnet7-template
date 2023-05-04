@@ -22,7 +22,10 @@ jobs:
     - name: Build the Docker image
       run: |
         docker build . --file Dockerfile --tag daed.duckdns.org:50000/${{values.name}}:$timestamp
+        docker tag daed.duckdns.org:50000/test-dotnet8:$timestamp daed.duckdns.org:50000/${{values.name}}:latest
 
     - uses: actions/checkout@v3
     - name: Push the docker image
-      run: docker push daed.duckdns.org:50000/${{values.name}}:$timestamp
+      run: |
+        docker push daed.duckdns.org:50000/${{values.name}}:$timestamp
+        docker push daed.duckdns.org:50000/${{values.name}}:latest

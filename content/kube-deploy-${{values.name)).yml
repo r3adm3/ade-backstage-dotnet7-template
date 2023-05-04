@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ${{values.name}}-deployment
+spec:
+  selector:
+    matchLabels:
+      app: ${{values.name}}
+  replicas: 1 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: ${{values.name}}
+    spec:
+      containers:
+      - name: ${{values.name}}
+        image: daed.duckdns.org:50000/${{values.name}}:latest
+        ports:
+        - containerPort: 80
+        imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: ${{values.name}}
+  name: ${{values.name}}
+spec:
+    ports:
+    - nodePort: 32008 # may need changing if conflicts on target kube cluster
+      port: 80
+      protocol: TCP
+      targetPort: 80
+    selector: 
+      app: ${{values.name}}
+    type: NodePort
